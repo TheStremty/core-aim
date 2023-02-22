@@ -83,13 +83,37 @@ end)
 -- Visuals
 local Visuals = Window:NewTab("Visuals")
 local Wallhack = Visuals:NewSection("Player ESP")
-Wallhack:NewButton("Highlight Players", "Just esp", function()
-    loadstring(game:HttpGet("https://github.com/TheStremty/core-aim/blob/main/tww-esp.lua"))();
-    notifications:notify{
-        Title = "Stremty.space",
-        Description = "Esp loaded",
-        Length=3
-    }
+Wallhack:NewToggle("Highlight players", "Just esp", function(state)
+    if state then
+        getgenv().enabled = true --Toggle on/off
+        getgenv().filluseteamcolor = false --Toggle fill color using player team color on/off
+        getgenv().outlineuseteamcolor = false --Toggle outline color using player team color on/off
+        getgenv().fillcolor = Color3.new(0, 0, 0) --Change fill color, no need to edit if using team color
+        getgenv().outlinecolor = Color3.new(1, 1, 1) --Change outline color, no need to edit if using team color
+        getgenv().filltrans = 0 --Change fill transparency
+        getgenv().outlinetrans = 0 --Change outline transparency
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/zntly/highlight-esp/main/esp.lua"))()
+
+        notifications:notify{
+            Title = "Stremty.space",
+            Description = "ESP Enabled",
+            Length=3
+        }
+    else
+        getgenv().enabled = false --Toggle on/off
+        getgenv().filluseteamcolor = false --Toggle fill color using player team color on/off
+        getgenv().outlineuseteamcolor = false --Toggle outline color using player team color on/off
+        getgenv().fillcolor = Color3.new(0, 0, 0) --Change fill color, no need to edit if using team color
+        getgenv().outlinecolor = Color3.new(1, 1, 1) --Change outline color, no need to edit if using team color
+        getgenv().filltrans = 0 --Change fill transparency
+        getgenv().outlinetrans = 0 --Change outline transparency
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/zntly/highlight-esp/main/esp.lua"))()
+        notifications:notify{
+            Title = "Stremty.space",
+            Description = "ESP Disabled",
+            Length=3
+        }
+    end
 end)
 local Graphics = Visuals:NewSection("Graphics")
 Graphics:NewButton("Smooth materials","Fps Boost",function()
