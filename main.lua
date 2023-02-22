@@ -132,7 +132,6 @@ end)
 local Panel = Misc:NewSection("Panel")
 Panel:NewKeybind("Open menu", "Change keybind", Enum.KeyCode.J, function()
 	Library:ToggleUI()
-    Library:
 end)
 
 local Other = Misc:NewSection("Other")
